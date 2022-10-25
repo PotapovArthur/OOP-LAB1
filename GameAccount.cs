@@ -4,22 +4,21 @@ namespace Lab1
 {
     public class GameAccount
     {
-       private int GamesCount;
-       public string AccountID { get; }
-       public string UserName { get; set; }
-       public int CurrentRating
-       {
+        private int GamesCount;
+        public string AccountID { get; }
+        public string UserName { get; set; }
+        public int CurrentRating
+        {
             get
             {
                 int currentrating = 0;
                 foreach (var item in allGames)
                 {
                     currentrating += item.Rating;
-
                 }
                 return currentrating;
             }
-       }
+        }
         private static int accountNumberSeed = 1234567890;
         public GameAccount(string username, int rating)
         {
@@ -42,15 +41,18 @@ namespace Lab1
         {
             if (CurrentRating - rating < 1)
             {
-                throw new ArgumentOutOfRangeException(nameof(rating), "Мiнiмальний рейтинг гравця : 1");
-
+                var negativerating = new Game(playername, opponentname, -CurrentRating + 1, "ПОРАЗКА");
+                allGames.Add(negativerating);
             }
+            else
+            {
                 if (rating < 0)
                 {
                     throw new InvalidOperationException("Рейтинг на який грають не може бути негативним");
                 }
                 var lostgame = new Game(playername, opponentname, -rating, "ПОРАЗКА");
                 allGames.Add(lostgame);
+            }
         }
         public string GetStats()
         {

@@ -16,20 +16,7 @@
             int gamescount = Convert.ToInt16(Console.ReadLine());
             for (int i = 0; i < gamescount; i++)
             {
-                Random random = new Random();
-                int n = random.Next(0, 2);
-                Console.WriteLine("\nНа скiльки рейтингу граєте :");
-                int bid = Convert.ToInt16(Console.ReadLine());
-                if (n == 0)
-                {
-                    acc1.WinGame(nickname1!, nickname2!, bid);
-                    acc2.LoseGame(nickname2!, nickname1!, bid);
-                }
-                else
-                {
-                    acc1.LoseGame(nickname1!, nickname2!, bid);
-                    acc2.WinGame(nickname2!, nickname1!, bid);
-                }
+                Play.aGame(acc1, acc2);
             }
             Console.WriteLine($"\nСТАТИСТИКА ГРАВЦЯ {nickname1!} :\n");
             Console.WriteLine(acc1.GetStats());
